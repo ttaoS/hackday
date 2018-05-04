@@ -14,8 +14,7 @@
        <template>
       <div class="casing">
       <transition name="fade">
-        <div class="thumbnail"  v-if="isDisplay">
-
+        <div class="thumbnail" v-show="isDisplay">
           <img :src="place.adImageUrl" alt="" style="height: 150px; width:300px">
           <a :href="place.url" target="_blank" @click="count(place.id)" class="middle">
             <p class="description">{{place.description}}</p>
@@ -64,7 +63,8 @@ export default {
           name: 'Manly Surf Schools',
           description: 'Experience the Australian Beach!',
           url: 'https://manlysurfschool.com/',
-          adImageUrl: 'https://manlysurfschool.com/wp-content/uploads/unknown.jpg'
+          adImageUrl:
+            'https://manlysurfschool.com/wp-content/uploads/unknown.jpg'
         },
         {
           name: 'SEA LIFE Sydney Aquarium',
@@ -126,6 +126,7 @@ export default {
   background: #fff;
   padding: 10px 20px 20px 15px;
   position: fixed;
+  width: 100%;
   bottom: 0;
   z-index: 999;
   border-top: 1px solid #ccc;
@@ -139,7 +140,7 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 70%;
+  width: 220px;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
@@ -167,10 +168,12 @@ export default {
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: max-height 0.5s;
+  overflow: hidden;
+  max-height: 400px;
 }
 .fade-enter,
 .fade-leave-to {
-  opacity: 0;
+  max-height: 0;
 }
 </style>
