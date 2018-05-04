@@ -17,7 +17,7 @@
         <div class="thumbnail"  v-if="isDisplay">
 
           <img :src="place.adImageUrl" alt="" style="height: 150px; width:300px">
-          <a :href="place.url" target="_blank" class="middle">
+          <a :href="place.url" target="_blank" @click="count(place.id)" class="middle">
             <p class="description">{{place.description}}</p>
             <div class="button">Book Now</div>
           </a>
@@ -25,14 +25,14 @@
         </transition>
         <div class="caption">
           <h4>{{place.name}}</h4>
-          
+
         </div>
     </div>
       </template>
     </slide>
   </carousel>
 </div>
-  
+
 </template>
 
 <script>
@@ -114,6 +114,9 @@ export default {
   methods: {
     toggle: function() {
       this.isDisplay = !this.isDisplay;
+    },
+    count: function(id) {
+      axios.get(`http://localhost:3001/activities/${id}/increase`);
     }
   }
 };
